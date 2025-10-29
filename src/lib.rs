@@ -1,4 +1,4 @@
-use std::{fmt::{Error, Result}, ops::Add};
+use std::{fmt::{Error, Result}, ops::{Add, AddAssign, Sub}};
 
 pub struct Vector{
     x: f64,
@@ -49,8 +49,18 @@ impl Add for Vector{
     fn add(self, rhs: Vector) -> Self::Output {
         Vector {x: self.x + rhs.x, y: self.y + rhs.y, z: self.z + rhs.z}
     }
-    
 }
+
+impl AddAssign for Vector {
+    fn add_assign(&mut self, rhs: Self) {
+        *self = Self{
+            x: self.x + rhs.x,
+            y: self.y + rhs.y,
+            z: self.z + rhs.z,
+        };
+    }
+}
+
 
 impl Clone for Vector{
     fn clone(&self) -> Self {
