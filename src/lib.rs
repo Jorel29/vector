@@ -61,6 +61,13 @@ impl AddAssign for Vector {
     }
 }
 
+impl Sub for Vector {
+    type Output = Vector;
+    fn sub(self, rhs: Vector) -> Self::Output {
+        Vector {x: self.x - rhs.x, y: self.y - rhs.y, z: self.z - rhs.z}
+    }
+}
+
 
 impl Clone for Vector{
     fn clone(&self) -> Self {
