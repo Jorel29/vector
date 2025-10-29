@@ -1,12 +1,48 @@
-use std::fmt::{Result};
+use std::fmt::{Error, Result};
 
 pub struct Vector{
     x: f64,
     y: f64,
     z: f64,
 }
+pub trait MathOps<T> {
+    fn add(&mut self, b:T) -> Result;
+    fn subtract(&mut self, b:T) -> Result;
+    fn multiply(&mut self, b:T) -> Result;
+    fn divide(&mut self, b:T) -> Result;
+}
+impl MathOps<Vector> for Vector{
 
-
+    fn add(&mut self, b: Vector) -> Result{
+        self.x += b.x;
+        self.y += b.y;
+        self.z += b.z;
+        Ok(())
+    }
+    fn subtract(&mut self, b: Vector) -> Result{
+        self.x -= b.x;
+        self.y -= b.y;
+        self.z -= b.z;
+        Ok(())
+    }
+    fn multiply(&mut self, b:Vector) -> Result{
+        
+        self.x *= b.x;
+        self.y *= b.y;
+        self.z *= b.z;
+        Ok(())
+    }
+    fn divide(&mut self, b:Vector) -> Result{
+        if b.x != 0.0 && b.y != 0.0 && b.z != 0.0{
+            self.x /= b.x;
+            self.y /= b.y;
+            self.z /= b.z;
+            Ok(())
+        }else{
+            Err(Error)
+        }
+    }
+}
 
 impl Vector {
     
@@ -14,38 +50,9 @@ impl Vector {
         Vector { x: 0.0 , y: 0.0, z: 0.0 }
     }
 
-    pub fn add(&mut self, vec: Vector) -> Result{
-        self.x += vec.x;
-        self.y += vec.y;
-        self.z += vec.z;
-        Ok(())
+    pub fn equal(&self,  vec:Vector) -> bool{
+        self.x == vec.x && self.y == vec.y && self.z == vec.z
     }
-
-    pub fn subtract(&mut self, vec: Vector) -> Result{
-        self.x -= vec.x;
-        self.y -= vec.y;
-        self.z -= vec.z;
-        Ok(())
-    }
-
-    pub fn divide(&mut self, vec: Vector) -> Result{
-        if vec.x != 0.0 && vec.y != 0.0 && vec.z != 0.0{
-            self.x /= vec.x;
-            self.y /= vec.y;
-            self.z /= vec.z;
-            return Ok(())
-        }else{
-            return Err(std::fmt::Error)
-        }
-    }
-
-    pub fn multiply(&mut self, vec:Vector) -> Result {
-        self.x *= vec.x;
-        self.y *= vec.y;
-        self.z *= vec.z;
-        Ok(())
-    }
-
 }
 
 #[cfg(test)]
@@ -63,8 +70,7 @@ mod tests {
 
     #[test]
     fn update_x(){
-        let mut vec = Vector::new();
-        vec.x = 3.0;
+        let vec = Vector::new();
 
         assert_eq!(vec.x, 3.0, "changed x to 3.0");
     }
