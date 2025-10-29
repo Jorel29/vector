@@ -44,8 +44,14 @@ impl MathOps<Vector> for Vector{
     }
 }
 
+impl Clone for Vector{
+    fn clone(&self) -> Self {
+        Self { x: self.x.clone(), y: self.y.clone(), z: self.z.clone() }
+    }
+}
+
 impl Vector {
-    
+     
     pub fn new() -> Vector {
         Vector { x: 0.0 , y: 0.0, z: 0.0 }
     }
