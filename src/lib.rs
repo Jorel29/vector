@@ -1,4 +1,4 @@
-use std::fmt::{Error, Result};
+use std::{fmt::{Error, Result}, ops::Add};
 
 pub struct Vector{
     x: f64,
@@ -42,6 +42,14 @@ impl MathOps<Vector> for Vector{
             Err(Error)
         }
     }
+}
+
+impl Add for Vector{
+    type Output = Vector;
+    fn add(self, rhs: Vector) -> Self::Output {
+        Vector {x: self.x + rhs.x, y: self.y + rhs.y, z: self.z + rhs.z}
+    }
+    
 }
 
 impl Clone for Vector{
