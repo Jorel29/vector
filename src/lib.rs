@@ -1,9 +1,9 @@
 use std::{fmt::{Error, Result}, ops::{Add, AddAssign, Sub}};
 
 pub struct Vector{
-    x: f64,
-    y: f64,
-    z: f64,
+    pub x: f64,
+    pub y: f64,
+    pub z: f64,
 }
 pub trait MathOps<T> {
     fn add(&mut self, b:T) -> Result;
