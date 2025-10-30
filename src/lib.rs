@@ -1,4 +1,6 @@
-use std::{fmt::{Error, Result}, ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign}};
+use std::{
+    ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign}
+};
 
 pub struct Vector{
     pub x: f64,
