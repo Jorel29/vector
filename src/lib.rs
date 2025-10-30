@@ -5,44 +5,6 @@ pub struct Vector{
     pub y: f64,
     pub z: f64,
 }
-pub trait MathOps<T> {
-    fn add(&mut self, b:T) -> Result;
-    fn subtract(&mut self, b:T) -> Result;
-    fn multiply(&mut self, b:T) -> Result;
-    fn divide(&mut self, b:T) -> Result;
-}
-impl MathOps<Vector> for Vector{
-
-    fn add(&mut self, b: Vector) -> Result{
-        self.x += b.x;
-        self.y += b.y;
-        self.z += b.z;
-        Ok(())
-    }
-    fn subtract(&mut self, b: Vector) -> Result{
-        self.x -= b.x;
-        self.y -= b.y;
-        self.z -= b.z;
-        Ok(())
-    }
-    fn multiply(&mut self, b:Vector) -> Result{
-        
-        self.x *= b.x;
-        self.y *= b.y;
-        self.z *= b.z;
-        Ok(())
-    }
-    fn divide(&mut self, b:Vector) -> Result{
-        if b.x != 0.0 && b.y != 0.0 && b.z != 0.0{
-            self.x /= b.x;
-            self.y /= b.y;
-            self.z /= b.z;
-            Ok(())
-        }else{
-            Err(Error)
-        }
-    }
-}
 
 impl Add for Vector{
     type Output = Vector;
