@@ -1,4 +1,4 @@
-use std::{fmt::{Error, Result}, ops::{Add, AddAssign, Sub, SubAssign}};
+use std::{fmt::{Error, Result}, ops::{Add, AddAssign, Mul, Sub, SubAssign}};
 
 pub struct Vector{
     pub x: f64,
@@ -75,6 +75,17 @@ impl SubAssign for Vector {
             y: self.y - rhs.y,
             z: self.z - rhs.z,
         };
+    }
+}
+
+impl Mul for Vector {
+    type Output = Vector;
+    fn mul(self, rhs: Self) -> Self::Output {
+        Vector{
+            x: self.x * rhs.x,
+            y: self.y * rhs.y,
+            z: self.z * rhs.z, 
+        }
     }
 }
 
