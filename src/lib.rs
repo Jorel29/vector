@@ -1,4 +1,4 @@
-use std::{fmt::{Error, Result}, ops::{Add, AddAssign, Div, Mul, MulAssign, Sub, SubAssign}};
+use std::{fmt::{Error, Result}, ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign}};
 
 pub struct Vector{
     pub x: f64,
@@ -112,6 +112,20 @@ impl Div for Vector {
             y: self.y / rhs.y,
             z: self.z / rhs.z,
         }
+    }
+}
+
+impl DivAssign for Vector {
+    fn div_assign(&mut self, rhs: Self) {
+        if rhs.x == 0.0 || rhs.y == 0.0 || rhs.z == 0.0{
+            panic!("Cannot divide by zero x:{} y:{} z:{}", rhs.x, rhs.y, rhs.z);
+        };
+        *self = Self {
+            x: self.x / rhs.x,
+            y: self.y / rhs.y,
+            z: self.z / rhs.z,
+        }        
+
     }
 }
 
