@@ -1,4 +1,4 @@
-use std::{fmt::{Error, Result}, ops::{Add, AddAssign, Sub}};
+use std::{fmt::{Error, Result}, ops::{Add, AddAssign, Sub, SubAssign}};
 
 pub struct Vector{
     pub x: f64,
@@ -65,6 +65,16 @@ impl Sub for Vector {
     type Output = Vector;
     fn sub(self, rhs: Vector) -> Self::Output {
         Vector {x: self.x - rhs.x, y: self.y - rhs.y, z: self.z - rhs.z}
+    }
+}
+
+impl SubAssign for Vector {
+    fn sub_assign(&mut self, rhs: Self ){
+        *self = Self{
+            x: self.x - rhs.x,
+            y: self.y - rhs.y,
+            z: self.z - rhs.z,
+        };
     }
 }
 
