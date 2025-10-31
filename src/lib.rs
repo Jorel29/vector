@@ -93,6 +93,23 @@ impl DivAssign for Vector {
     }
 }
 
+impl Mul<f64> for Vector{
+    type Output = Vector;
+
+    fn mul(self, rhs: f64) -> Self::Output{
+        Vector{x:self.x*rhs, y:self.y*rhs, z:self.z*rhs}
+    }
+}
+
+impl MulAssign<f64> for Vector{
+    fn mul_assign(&mut self, rhs: f64) {
+        *self = Self { 
+            x: self.x*rhs,
+            y: self.x*rhs,
+            z: self.x*rhs,
+        }
+    }
+}
 impl PartialEq for Vector {
     fn eq(&self, other: &Self) -> bool {
         self.x == other.x && self.y == other.y && self.z == other.z
@@ -271,4 +288,5 @@ mod tests {
         v1 /= v2;
 
     }
+
 }
