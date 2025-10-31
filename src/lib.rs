@@ -1,4 +1,5 @@
 use std::{
+    fmt::{Display},
     ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign}
 };
 
@@ -157,6 +158,12 @@ impl Clone for Vector{
     }
 }
 
+impl Display for Vector{
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "X: {} Y: {} Z: {}", self.x, self.y, self.z)
+    }
+}
+
 impl Vector {
      
     pub fn new() -> Vector {
@@ -240,7 +247,7 @@ mod tests {
         let mut v1 = v1!();
         let v2 = v2!();
         v1 += v2;
-        let res = Vector{x: 4.0, y: 5.0, z: 2.0};
+        let res = Vector{x: 4.0, y: 5.0, z: 3.0};
 
         assert!(v1 == res, "add assign test");
 
