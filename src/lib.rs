@@ -3,7 +3,7 @@ use std::{
     ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign}
 };
 
-//TODO: Rework equality to add tolerances, which also requires reworking all tests using eq
+//TODO: consider tolerance versions of functions
 
 pub struct Vector{
     pub x: f64,
