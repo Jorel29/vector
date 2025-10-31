@@ -110,6 +110,35 @@ impl MulAssign<f64> for Vector{
         }
     }
 }
+
+impl Div<f64> for Vector{
+    type Output = Vector;
+    fn div(self, rhs: f64) -> Self::Output {
+        if rhs == 0.0 {
+            panic!("Cannot divide by zero rhs: {}", rhs);
+        };
+        Vector{
+            x: self.x / rhs,
+            y: self.y / rhs,
+            z: self.z / rhs
+        }
+    }
+}
+
+impl DivAssign<f64> for Vector {
+    fn div_assign(&mut self, rhs: f64) {
+        
+        if rhs == 0.0 {
+            panic!("Cannot divide by zero rhs: {}", rhs);
+        };
+
+        *self = Self { 
+            x: self.x / rhs,
+            y: self.y / rhs,
+            z: self.z / rhs 
+        }
+    }
+}
 impl PartialEq for Vector {
     fn eq(&self, other: &Self) -> bool {
         self.x == other.x && self.y == other.y && self.z == other.z
