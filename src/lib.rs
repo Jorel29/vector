@@ -214,7 +214,7 @@ mod tests {
     fn ne(){
 
         let v1 = Vector::new();
-        let v2 = Vector::new();
+        let v2 = Vector { x: 1.0, y: 1.0, z:1.0 };
         assert!(v1 != v2, "Testing Partial non equality");
     }
 
@@ -223,7 +223,7 @@ mod tests {
         let v1 = Vector{x:1.0, y:2.0, z: 3.0};
         let v2 = v1.clone();
 
-        assert!(&v1 != &v2, "testing clone")
+        assert!(v1 == v2, "testing clone, makes deep copy, but same values");
 
     }
 
