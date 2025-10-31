@@ -170,9 +170,6 @@ impl Vector {
         Vector { x: 0.0 , y: 0.0, z: 0.0 }
     }
 
-    pub fn equal(&self,  vec:Vector) -> bool{
-        self.x == vec.x && self.y == vec.y && self.z == vec.z
-    }
 }
 
 #[cfg(test)]
