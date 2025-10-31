@@ -103,8 +103,6 @@ impl PartialEq for Vector {
     }
 }
 
-
-
 impl Clone for Vector{
     fn clone(&self) -> Self {
         Self { x: self.x.clone(), y: self.y.clone(), z: self.z.clone() }
@@ -136,10 +134,42 @@ mod tests {
     }
 
     #[test]
-    fn update_x(){
-        let vec = Vector::new();
-
+    fn update_partial(){
+        let mut vec = Vector::new();
+        vec.x = 3.0;
+        vec.y = 1.0;
+        vec.z = 2.0;
         assert_eq!(vec.x, 3.0, "changed x to 3.0");
+        assert_eq!(vec.y, 1.0, "changed y to 1.0");
+        assert_eq!(vec.z, 2.0, "changed z to 2.0");
     }
+
+
+    #[test]
+    fn eq(){
+        let v1 = Vector::new();
+        let v2 = Vector::new();
+        assert!(v1 == v2, "Testing Partial equality");
+    }
+
+    #[test]
+    fn ne(){
+
+        let v1 = Vector::new();
+        let v2 = Vector::new();
+        assert!(v1 != v2, "Testing Partial non equality");
+    }
+
+
+
+    #[test]
+    fn add(){
+        let vec = Vector{x: 1.1, y: 2.3, z:1.0 };
+        let add = Vector{x: 1.0, y: 2.0, z: 3.0};
+        let res = vec + add;
+        assert!(res == Vector{x: 2.1, y:4.3, z:4.0});   
+    }
+
+
 
 }
