@@ -2,6 +2,8 @@ use std::{
     ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign}
 };
 
+//TODO: Rework equality to add tolerances, which also requires reworking all tests using eq
+
 pub struct Vector{
     pub x: f64,
     pub y: f64,
@@ -317,5 +319,25 @@ mod tests {
         v1 /= v2;
 
     }
+    
+    #[test]
+    fn mul_element_wise(){
+        let v1 = v1!();
+        let x = 2.0;
 
+        let res = v1 * x;
+
+        assert!(res== Vector{x: 2.0, y: 4.0, z: 2.0});
+    }
+
+    #[test]
+    fn mul_assign_element_wise(){
+        let mut v1 = v1!();
+        let x = 2.0;
+
+        v1 *= x;
+
+        
+        assert!(v1 == Vector{x: 2.0, y: 4.0, z: 2.0});
+    }
 }
