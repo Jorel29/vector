@@ -347,4 +347,43 @@ mod tests {
         
         assert!(v1 == Vector{x: 2.0, y: 4.0, z: 2.0});
     }
+
+    #[test]
+    fn div_element_wise(){
+        let v1 = v1!();
+        let x = 2.0;
+
+        let res = v1 / x;
+
+        assert!(res == Vector{x: 0.5, y: 1.0, z: 0.5});
+    }
+
+    #[test]
+    fn div_assign_element_wise(){
+        let mut v1 = v1!();
+        let x = 2.0;
+
+        v1 /= x;
+
+        assert!(v1 == Vector{x: 0.5, y: 1.0, z: 0.5})
+    }
+
+    #[test]
+    #[should_panic]
+    fn div_element_wise_zero(){
+        let v1 = v1!();
+        let x = 0.0;
+
+        let _res = v1 / x;
+    }
+
+    #[test]
+    #[should_panic]
+    fn div_assign_element_wise_zero(){
+        let mut v1 = v1!();
+        let x = 0.0;
+
+        v1 /= x;
+
+    }
 }
