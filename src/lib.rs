@@ -215,5 +215,60 @@ mod tests {
         assert!(v1 == Vector{x: -2.0, y: -1.0, z: -1.0});
     }
 
+    #[test]
+    fn mul(){
+        let v1 = v1!();
+        let v2 = v2!();
+        let res = v1*v2;
+        assert!(res == Vector{x:3.0, y: 6.0, z: 2.0  });
+    }
 
+    #[test]
+    fn mul_assign(){
+        let mut v1 = v1!();
+        let v2 = v2!();
+        v1 *= v2;
+        assert!(v1 == Vector{x: 3.0, y: 6.0, z:2.0});
+    }
+
+    #[test]
+    fn div(){
+        let v1 = Vector{x: 4.0, y:6.0, z:10.0};
+        let v2 = Vector{x: 2.0, y:3.0, z: 2.0};
+
+        let res = v1/v2;
+
+        assert!(res == Vector{x: 2.0, y: 2.0, z: 5.0}, "Proper Div");
+    }
+
+    #[test]
+    #[should_panic]
+    fn div_zero(){
+        let v1 = v1!();
+        let v2 = Vector{x:1.0, y:0.0, z:0.0};
+        let _res = v1/v2;
+
+    }
+
+    #[test]
+    fn div_assign(){
+
+        let mut v1 = Vector{x: 4.0, y:6.0, z:10.0};
+        let v2 = Vector{x: 2.0, y:3.0, z: 2.0};
+
+        v1 /= v2;
+
+        assert!(v1 == Vector{x: 2.0, y: 2.0, z: 5.0}, "Proper Div Assign");
+    }
+    
+    #[test]
+    #[should_panic]
+    fn div_assign_zero(){
+        
+        let mut v1 = Vector{x: 4.0, y:6.0, z:10.0};
+        let v2 = Vector{x: 2.0, y:0.0, z: 2.0};
+
+        v1 /= v2;
+
+    }
 }
