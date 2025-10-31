@@ -108,8 +108,8 @@ impl MulAssign<f64> for Vector{
     fn mul_assign(&mut self, rhs: f64) {
         *self = Self { 
             x: self.x*rhs,
-            y: self.x*rhs,
-            z: self.x*rhs,
+            y: self.y*rhs,
+            z: self.z*rhs,
         }
     }
 }
