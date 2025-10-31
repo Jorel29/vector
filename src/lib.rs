@@ -93,6 +93,17 @@ impl DivAssign for Vector {
     }
 }
 
+impl PartialEq for Vector {
+    fn eq(&self, other: &Self) -> bool {
+        self.x == other.x && self.y == other.y && self.z == other.z
+    }
+
+    fn ne(&self, other: &Self) -> bool { 
+        self.x != other.x && self.y != other.y && self.z != other.z
+    }
+}
+
+
 
 impl Clone for Vector{
     fn clone(&self) -> Self {
