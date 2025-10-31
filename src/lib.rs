@@ -124,7 +124,17 @@ impl Vector {
 mod tests {
 
     use super::*;
+    macro_rules! v1 {
+        () => {
+            Vector{x:1.0, y: 2.0, z: 1.0}
+        };
+    }
 
+    macro_rules! v2 {
+        () => {
+            Vector{x:3.0, y: 3.0, z: 2.0}
+        };
+    }
     #[test]
     fn init() {
         let result = Vector::new();
@@ -160,7 +170,14 @@ mod tests {
         assert!(v1 != v2, "Testing Partial non equality");
     }
 
+    #[test]
+    fn clone(){
+        let v1 = Vector{x:1.0, y:2.0, z: 3.0};
+        let v2 = v1.clone();
 
+        assert!(&v1 != &v2, "testing clone")
+
+    }
 
     #[test]
     fn add(){
@@ -170,6 +187,33 @@ mod tests {
         assert!(res == Vector{x: 2.1, y:4.3, z:4.0});   
     }
 
+    #[test]
+    fn add_assign(){
+        let mut v1 = v1!();
+        let v2 = v2!();
+        v1 += v2;
+        let res = Vector{x: 4.0, y: 5.0, z: 2.0};
+
+        assert!(v1 == res, "add assign test");
+
+    }
+
+    #[test]
+    fn sub(){
+
+        let v1 = v1!();
+        let v2 = v2!();
+        let res = v1 - v2 ;
+        assert!(res == Vector{x: -2.0, y:-1.0, z: -1.0});   
+    }
+
+    #[test]
+    fn sub_assign(){
+        let mut v1 = v1!();
+        let v2 = v2!();
+        v1 -= v2;
+        assert!(v1 == Vector{x: -2.0, y: -1.0, z: -1.0});
+    }
 
 
 }
