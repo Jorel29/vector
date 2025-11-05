@@ -1,5 +1,6 @@
 use std::{
-    fmt::{Display},
+    f64,
+    fmt::Display, 
     ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign}
 };
 
@@ -168,6 +169,22 @@ impl Vector {
      
     pub fn new() -> Vector {
         Vector { x: 0.0 , y: 0.0, z: 0.0 }
+    }
+
+    pub fn distance(a: &Vector, b: &Vector) -> f64 {
+        let x = (b.x -a.x) * (b.x - a.x);
+        let y = (b.y - a.y) * (b.y - a.y);
+        let z = (b.z - a.z) * (b.z - a.z);
+
+        (x + y + z).sqrt()                
+    }
+
+    pub fn distance_squared(a: &Vector, b:&Vector) -> f64{
+        let x = (b.x -a.x) * (b.x - a.x);
+        let y = (b.y - a.y) * (b.y - a.y);
+        let z = (b.z - a.z) * (b.z - a.z);
+
+        x + y + z
     }
 
 }
@@ -382,5 +399,26 @@ mod tests {
 
         v1 /= x;
 
+    }
+
+    #[test]
+    fn distance(){
+        let v1 = v1!();
+        let v2 = v2!();
+
+        let dist = Vector::distance(&v1, &v2);
+
+        assert!(dist != 0.0, "Checking dist")
+    }
+
+    #[test]
+    fn distance_squared(){
+
+        let v1 = v1!();
+        let v2 = v2!();
+
+        let dist = Vector::distance_squared(&v1, &v2);
+
+        assert!(dist != 0.0, "Checking dist squared")
     }
 }
