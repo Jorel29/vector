@@ -1,11 +1,9 @@
 use std::{
-    f64,
-    fmt::Display, 
-    ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign}
+    f64, fmt::Display, ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign}
 };
 
 //TODO: consider tolerance versions of functions
-
+#[derive(Copy, Clone)]
 pub struct Vector{
     pub x: f64,
     pub y: f64,
@@ -153,11 +151,6 @@ impl PartialEq for Vector {
     }
 }
 
-impl Clone for Vector{
-    fn clone(&self) -> Self {
-        Self { x: self.x.clone(), y: self.y.clone(), z: self.z.clone() }
-    }
-}
 
 impl Display for Vector{
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -185,6 +178,10 @@ impl Vector {
         let z = (b.z - a.z) * (b.z - a.z);
 
         x + y + z
+    }
+
+    pub fn dot(a: &Vector, b: &Vector) -> f64{
+        a.x * b.x + a.y * b.y + a.z * b.z
     }
 
 }
@@ -420,5 +417,14 @@ mod tests {
         let dist = Vector::distance_squared(&v1, &v2);
 
         assert!(dist != 0.0, "Checking dist squared")
+    }
+
+    #[test]
+    fn simple_dot(){
+        let v1 = v1!();
+        let v2 = v2!();
+
+        let dot = Vector::dot(&v1, &v2);
+        assert_eq!(dot, 11.0, "Checking dot product")
     }
 }
